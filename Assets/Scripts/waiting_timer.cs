@@ -7,6 +7,8 @@ public class waiting_timer : MonoBehaviour
 {
     public float timer = 30f;
     public TextMeshProUGUI timerText;
+    public TextMeshProUGUI instruct;
+    public TextMeshProUGUI label;
 
     void Start()
     {
@@ -15,6 +17,9 @@ public class waiting_timer : MonoBehaviour
 
     void Update()
     {
+        if(timer > 0)
+        {
+
         timer -= Time.deltaTime;
         if (timer <= 0)
         {
@@ -25,6 +30,13 @@ public class waiting_timer : MonoBehaviour
 
         // Update the text display every frame
         UpdateTimerText();
+        }
+        else
+        {
+            timerText.gameObject.SetActive(false);
+            label.gameObject.SetActive(false);
+            instruct.gameObject.SetActive(true);
+        }
     }
 
     // Update the text displayed in the TextMeshProUGUI object
