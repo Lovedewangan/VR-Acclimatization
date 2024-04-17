@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class waiting_timer : MonoBehaviour
 {
-    public float timer = 30f;
+    public static float timer = 30f;
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI instruct;
     public TextMeshProUGUI label;

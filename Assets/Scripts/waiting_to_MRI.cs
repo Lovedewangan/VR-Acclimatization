@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class waiting_to_MRI : MonoBehaviour
 {
+    public static int check = 0;
     public GameObject timer_canvas;
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,7 @@ public class waiting_to_MRI : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        check =1;
         Destroy(gameObject);
         timer_canvas.SetActive(true);
     }
