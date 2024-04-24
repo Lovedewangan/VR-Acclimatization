@@ -8,7 +8,7 @@ public class xompanion : MonoBehaviour
     public Animator animator;
     public float movementSpeed = 2.0f;
 
-    bool playerReachedSpot = false;
+    
 
     void Update()
     {
