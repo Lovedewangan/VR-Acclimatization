@@ -55,7 +55,7 @@ public class companion : MonoBehaviour
                     targetPosition2.position = targetPosition3.position;
                 }
             }
-            else if(!reachedTarget3)
+            else if (!reachedTarget3)
             {
                 movementSpeed = 1.5f;
                 animator.SetBool("MoveTowardsPlayer", true);
@@ -68,13 +68,13 @@ public class companion : MonoBehaviour
             }
             else
             {
-                
+
                 movementSpeed = 1.5f;
                 animator.SetBool("MoveTowardsPlayer", true);
                 transform.LookAt(targetPosition4.position);
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition4.position, Time.deltaTime * movementSpeed);
 
-                if(Vector3.Distance(transform.position, targetPosition4.position) < 0.1f)
+                if (Vector3.Distance(transform.position, targetPosition4.position) < 0.1f)
                 {
                     transform.LookAt(player.position);
                 }
