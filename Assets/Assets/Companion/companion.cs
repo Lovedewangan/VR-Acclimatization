@@ -9,11 +9,17 @@ public class companion : MonoBehaviour
     public Transform targetPosition3;
     public Transform targetPosition4;
     public Animator animator;
+<<<<<<< HEAD
     private float movementSpeed = 2.0f;
     private bool reachedTarget2 = false;
     private bool reachedTarget3 = false;
     private bool InteractWithPlayer = false;
     private bool MoveTowardsPlayer = false;
+=======
+    public float movementSpeed = 2.0f;
+
+    bool playerReachedSpot = false;
+>>>>>>> parent of 10eaee8 (MRI Interaction UI)
 
     void Update()
     {
