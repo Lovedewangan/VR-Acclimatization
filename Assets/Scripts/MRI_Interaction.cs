@@ -6,8 +6,7 @@ public class MRI_Interaction : MonoBehaviour
 {
     public GameObject targetObject;
     public GameObject targetReached;
-    public GameObject mriUI;
-    public bool activateUpdate = false;
+    private bool activateUpdate = false;
     public float moveSpeed = 0.1f;
     // Start is called before the first frame update
     void Start()
@@ -29,7 +28,7 @@ public class MRI_Interaction : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, targetReached.transform.position, distanceToMove);
 
             // Check if the GameObject is close enough to the targetObject
-            /* if (Vector3.Distance(transform.position, targetObject.transform.position) < 0.1f)w
+            /* if (Vector3.Distance(transform.position, targetObject.transform.position) < 0.1f)
             {
                 // If close enough, stop moving and deactivate the Update function
                 transform.position = targetReached.transform.position;
@@ -55,24 +54,15 @@ public class MRI_Interaction : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("MRI"))
+        if (other.CompareTag("MRI"))
         {
             Vector3 position = targetObject.transform.position;
             transform.position = position;
             transform.rotation = targetObject.transform.rotation;
             Debug.Log("MRI Interaction");
-            mriUI.gameObject.SetActive(true);
-            other.gameObject.SetActive(false);
-
-
+            activateUpdate = true;
+            
         }
-        
-
-    }
-    
-    public void ActivateMRIMovement()
-    {
-        activateUpdate = true;
     }
     
 }

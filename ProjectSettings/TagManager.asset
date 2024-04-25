@@ -8,7 +8,6 @@ TagManager:
   - wait
   - reception
   - MRI
-  - MRIStart
   layers:
   - Default
   - TransparentFX
