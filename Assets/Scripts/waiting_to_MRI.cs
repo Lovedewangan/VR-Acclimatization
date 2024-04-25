@@ -19,7 +19,7 @@ public class waiting_to_MRI : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        check =1;
+        check ++;
         Destroy(gameObject);
         timer_canvas.SetActive(true);
     }
