@@ -9,6 +9,8 @@ TagManager:
   - reception
   - MRI
   - MRIStart
+  - MRIEnd
+  - MRIInside
   layers:
   - Default
   - TransparentFX
