@@ -129,7 +129,7 @@ public class MRI_Interaction : MonoBehaviour
 
     IEnumerator ShowExitUIDelayed()
     {
-        yield return new WaitForSeconds(2f); // Adjust the delay time as needed
+        yield return new WaitForSeconds(5f); // Adjust the delay time as needed
 
         mriExitUI.SetActive(true);
     }
