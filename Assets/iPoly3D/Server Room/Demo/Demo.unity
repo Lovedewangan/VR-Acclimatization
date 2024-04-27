@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2798bff688d14447b700dd70be4eac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1531780162}
+  player: {fileID: 625632282}
   targetPosition: {fileID: 1538321092}
   targetPosition2: {fileID: 880219870}
   targetPosition3: {fileID: 1472088115}
@@ -3706,6 +3706,11 @@ MonoBehaviour:
   mriUI: {fileID: 1339051958}
   activateUpdate: 0
   moveSpeed: 5
+--- !u!4 &625632282 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3462571325970164592, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
+  m_PrefabInstance: {fileID: 2054052784}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &638839093 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2908688435419562376, guid: 3f4814451272e874f9d7dc1534b22b63, type: 3}
