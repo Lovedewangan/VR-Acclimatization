@@ -1,0 +1,1 @@
+VR-Acclimatization is a VR experience designed to ease anxiety associated with MRI scans. Interact with a virtual companion who guides you through calming activities and relaxation techniques. Use this tool to prepare for your scan and stay calm during the procedure. Compatible with major VR platforms.
