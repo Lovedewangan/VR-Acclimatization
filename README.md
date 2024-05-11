@@ -1,1 +1,8 @@
-VR-Acclimatization is a VR experience designed to ease anxiety associated with MRI scans. Interact with a virtual companion who guides you through calming activities and relaxation techniques. Use this tool to prepare for your scan and stay calm during the procedure. Compatible with major VR platforms.
+MRI Companion is a gamified VR experience designed to help patients acclimatize to the MRI scan process. It features a supportive virtual companion who guides players through calming activities and relaxation techniques. The game also equips players with mental tools and positive memories from the VR experience to help them remain calm during the actual MRI scan.
+
+Features
+- Virtual Companion
+- Gamification
+- Relaxation Techniques
+- Simulated MRI Environment
+- Personalization
