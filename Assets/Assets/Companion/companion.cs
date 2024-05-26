@@ -14,9 +14,13 @@ public class companion : MonoBehaviour
     private bool reachedTarget3 = false;
     private bool InteractWithPlayer = false;
     private bool MoveTowardsPlayer = false;
+    public GameObject door;
 
     void Update()
     {
+         if (waiting_timer.timer <= 0)
+            door.gameObject.SetActive(false);
+
         if (waiting_timer.timer > 0)
         {
             if (waiting_to_MRI.check == 1)
