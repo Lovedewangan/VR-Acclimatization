@@ -42,13 +42,13 @@ public class companion : MonoBehaviour
             {
                 MoveTowards(targetPosition2);
             }
-          
+
 
             if (!reachedTarget2 && Vector3.Distance(transform.position, targetPosition2.position) < 0.1f)
             {
                 reachedTarget2 = true;
                 targetPosition2.gameObject.SetActive(false);
-               
+
                 StopMovement();
             }
 
@@ -57,18 +57,18 @@ public class companion : MonoBehaviour
 
                 MoveTowards(targetPosition3);
             }
-           
+
 
             if (!reachedTarget3 && Vector3.Distance(transform.position, targetPosition3.position) < 0.1f)
             {
                 reachedTarget3 = true;
-               
+
                 StopMovement();
             }
 
             if (reachedTarget3 && !reachedTarget4 && PlayerReachedTarget(player, targetPosition3))
             {
-                
+
                 MoveTowards(targetPosition4);
             }
 
