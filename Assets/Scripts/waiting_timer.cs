@@ -6,7 +6,7 @@ using UnityEngine;
 public class waiting_timer : MonoBehaviour
 {
     public GameObject breathingPanel;
-    public static float timer = 40f;
+    public static float timer = 62f; //62
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI instruct;
     public TextMeshProUGUI label;
@@ -14,7 +14,7 @@ public class waiting_timer : MonoBehaviour
     public TextMeshProUGUI breathTimerText;
 
     private float breathingTimer = 0f;
-    private bool isBreathingIn = true;
+    private int breathingStage = 0; // 0: Breath in, 1: Hold, 2: Breath out
 
     void Start()
     {
@@ -29,7 +29,7 @@ public class waiting_timer : MonoBehaviour
             timer -= Time.deltaTime;
 
             // Show breathing panel and perform breathing exercise when timer reaches certain value
-            if (timer <= 36)
+            if (timer <= 57) //57
             {
                 breathingPanel.gameObject.SetActive(true);
                 PerformBreathingExercise();
@@ -56,23 +56,28 @@ public class waiting_timer : MonoBehaviour
         }
     }
 
-    // Perform breathing exercise
+    // Perform 4-7-8 breathing exercise
     void PerformBreathingExercise()
     {
         if (breathingTimer <= 0f)
         {
-            if (isBreathingIn)
+            switch (breathingStage)
             {
-                breathText.text = "Breath In";
-                breathingTimer = 4f; // Breath in for 4 seconds
-                isBreathingIn = false;
+                case 0:
+                    breathText.text = "Breath In";
+                    breathingTimer = 4f; // Breath in for 4 seconds
+                    break;
+                case 1:
+                    breathText.text = "   Hold";
+                    breathingTimer = 7f; // Hold for 7 seconds
+                    break;
+                case 2:
+                    breathText.text = "Breath Out";
+                    breathingTimer = 8f; // Breath out for 8 seconds
+                    break;
             }
-            else
-            {
-                breathText.text = "Breath Out";
-                breathingTimer = 4f; // Breath out for 4 seconds
-                isBreathingIn = true;
-            }
+
+            breathingStage = (breathingStage + 1) % 3; // Cycle through stages
         }
         else
         {
