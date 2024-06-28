@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MRI_Interaction : MonoBehaviour
 {
+    public GameObject screen1;
+    public GameObject screen2;
+    public GameObject screen3;
     public GameObject targetObject;
     public GameObject targetReached;
     public GameObject targetExit;
@@ -45,6 +48,11 @@ public class MRI_Interaction : MonoBehaviour
                 mriInsideUI.gameObject.SetActive(true);
                 activateUpdate = false; // Deactivate the Update function
                 Debug.Log("DeActivated");
+
+                //Video Player Screens Just to hide previous video screens while selecting the video
+                screen1.gameObject.SetActive(false);
+                screen2.gameObject.SetActive(false);
+                screen3.gameObject.SetActive(false);
                 StartCoroutine(ShowExitUIDelayed());
             }
 
@@ -120,17 +128,19 @@ public class MRI_Interaction : MonoBehaviour
         mriUI.gameObject.SetActive(false);
     }
     
-    public void ExitMRI()
+    /*public void ExitMRI()
     {
         mriExitUpdate = true;
         mriExitUI.gameObject.SetActive(false);
         mriInsideUI.gameObject.SetActive(false);
     }
-
+    */
     IEnumerator ShowExitUIDelayed()
     {
-        yield return new WaitForSeconds(5f); // Adjust the delay time as needed
+        yield return new WaitForSeconds(30f); // Adjust the delay time as needed
 
-        mriExitUI.SetActive(true);
+        mriExitUpdate = true;
+        mriInsideUI.gameObject.SetActive(false);
+        //mriExitUI.SetActive(true);
     }
 }
