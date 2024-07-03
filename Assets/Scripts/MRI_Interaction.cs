@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class MRI_Interaction : MonoBehaviour
 {
+   
+
+    public AudioSource audioSource;
     public GameObject screen1;
     public GameObject screen2;
     public GameObject screen3;
@@ -25,6 +29,7 @@ public class MRI_Interaction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (activateUpdate)
         {
             Debug.Log("Activated");
@@ -48,6 +53,8 @@ public class MRI_Interaction : MonoBehaviour
                 mriInsideUI.gameObject.SetActive(true);
                 activateUpdate = false; // Deactivate the Update function
                 Debug.Log("DeActivated");
+
+                audioSource.Play();
 
                 //Video Player Screens Just to hide previous video screens while selecting the video
                 screen1.gameObject.SetActive(false);
@@ -137,7 +144,7 @@ public class MRI_Interaction : MonoBehaviour
     */
     IEnumerator ShowExitUIDelayed()
     {
-        yield return new WaitForSeconds(30f); // Adjust the delay time as needed
+        yield return new WaitForSeconds(120f); // Adjust the delay time as needed
 
         mriExitUpdate = true;
         mriInsideUI.gameObject.SetActive(false);
