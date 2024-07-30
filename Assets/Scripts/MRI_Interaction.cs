@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.XR;
 
 public class MRI_Interaction : MonoBehaviour
 {
-   
+    
 
     public AudioSource audioSource;
     public GameObject screen1;
@@ -30,9 +31,16 @@ public class MRI_Interaction : MonoBehaviour
     void Update()
     {
         
+
         if (activateUpdate)
         {
-            Debug.Log("Activated");
+            
+        
+
+        Debug.Log("Activated");
+
+            
+
             // Calculate the direction to move towards the targetObject
             Vector3 direction = (targetReached.transform.position - transform.position).normalized;
 
@@ -92,8 +100,11 @@ public class MRI_Interaction : MonoBehaviour
             }*/
             if (transform.position == targetObject.transform.position)
             {
+                
+
                 mriExitUpdate = false;
                 Debug.Log("ExitedMRI");
+
                 Vector3 position = targetExit.transform.position;
                 transform.position = position;
                 transform.rotation = targetExit.transform.rotation;
@@ -150,4 +161,8 @@ public class MRI_Interaction : MonoBehaviour
         mriInsideUI.gameObject.SetActive(false);
         //mriExitUI.SetActive(true);
     }
+
+    // To Enable and Disable the Joysticks
+     
+
 }
