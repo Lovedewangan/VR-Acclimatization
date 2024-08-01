@@ -28,12 +28,7 @@ public class MRI_Interaction : MonoBehaviour
         
     }
 
-    private void Awake()
-    {
-        moveProvider = GetComponent<ContinuousMoveProviderBase>();
-        // For teleportation:
-        // teleportationProvider = GetComponent<TeleportationProvider>();
-    }
+    
     
     // Update is called once per frame
     void Update()
