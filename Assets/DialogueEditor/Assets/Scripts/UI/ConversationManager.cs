@@ -627,7 +627,7 @@ namespace DialogueEditor
         private void TurnOnUI()
         {
             DialoguePanel.gameObject.SetActive(true);
-            OptionsPanel.gameObject.SetActive(true);
+            //OptionsPanel.gameObject.SetActive(true);
 
             if (BackgroundImage != null)
             {
@@ -645,7 +645,7 @@ namespace DialogueEditor
         private void TurnOffUI()
         {
             DialoguePanel.gameObject.SetActive(false);
-            OptionsPanel.gameObject.SetActive(false);
+            //OptionsPanel.gameObject.SetActive(false);
             SetState(eState.Off);
 #if UNITY_EDITOR
             // Debug.Log("[ConversationManager]: Conversation UI off.");

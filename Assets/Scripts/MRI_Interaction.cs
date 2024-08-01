@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class MRI_Interaction : MonoBehaviour
 {
@@ -27,6 +28,13 @@ public class MRI_Interaction : MonoBehaviour
         
     }
 
+    private void Awake()
+    {
+        moveProvider = GetComponent<ContinuousMoveProviderBase>();
+        // For teleportation:
+        // teleportationProvider = GetComponent<TeleportationProvider>();
+    }
+    
     // Update is called once per frame
     void Update()
     {
@@ -34,8 +42,7 @@ public class MRI_Interaction : MonoBehaviour
 
         if (activateUpdate)
         {
-            
-        
+
 
         Debug.Log("Activated");
 
@@ -100,8 +107,8 @@ public class MRI_Interaction : MonoBehaviour
             }*/
             if (transform.position == targetObject.transform.position)
             {
-                
 
+                
                 mriExitUpdate = false;
                 Debug.Log("ExitedMRI");
 

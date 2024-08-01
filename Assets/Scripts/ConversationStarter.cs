@@ -11,13 +11,13 @@ public class ConversationStarter : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         // Check if the PrimaryIndexTrigger is pressed
-        if (IsPrimaryIndexTriggerPressed())
-        {
+        //if (IsPrimaryIndexTriggerPressed())
+        //{
             ConversationManager.Instance.StartConversation(myConversation);
-        }
+        //}
     }
 
-    private bool IsPrimaryIndexTriggerPressed()
+   /* public bool IsPrimaryIndexTriggerPressed()
     {
         // Get the list of XR devices
         List<InputDevice> devices = new List<InputDevice>();
@@ -37,5 +37,5 @@ public class ConversationStarter : MonoBehaviour
         }
 
         return false;
-    }
+    }*/
 }
