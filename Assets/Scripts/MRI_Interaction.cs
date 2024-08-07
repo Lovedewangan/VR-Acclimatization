@@ -7,7 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class MRI_Interaction : MonoBehaviour
 {
-    
+    public LocomotionSystem locomotionSystem;
 
     public AudioSource audioSource;
     public GameObject screen1;
@@ -25,7 +25,7 @@ public class MRI_Interaction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        locomotionSystem = FindObjectOfType<LocomotionSystem>(); // Find the LocomotionSystem in the scene
     }
 
    
@@ -36,9 +36,9 @@ public class MRI_Interaction : MonoBehaviour
 
         if (activateUpdate)
         {
+            locomotionSystem.enabled = false;
 
-
-        Debug.Log("Activated");
+            Debug.Log("Activated");
 
             
 
@@ -101,8 +101,8 @@ public class MRI_Interaction : MonoBehaviour
             }*/
             if (transform.position == targetObject.transform.position)
             {
+                locomotionSystem.enabled = true;
 
-                
                 mriExitUpdate = false;
                 Debug.Log("ExitedMRI");
 
