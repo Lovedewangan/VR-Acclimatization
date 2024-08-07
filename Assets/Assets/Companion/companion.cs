@@ -74,6 +74,7 @@ public class companion : MonoBehaviour
 
             if (!reachedTarget4 && Vector3.Distance(transform.position, targetPosition4.position) < 0.1f)
             {
+               
                 reachedTarget4 = true;
                 InteractWithPlayer1();
             }

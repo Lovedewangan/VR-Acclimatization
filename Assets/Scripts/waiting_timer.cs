@@ -6,7 +6,7 @@ using UnityEngine;
 public class waiting_timer : MonoBehaviour
 {
     public GameObject breathingPanel;
-    public static float timer = 62f; //62
+    public static float timer = 66f; //62
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI instruct;
     public TextMeshProUGUI label;
@@ -15,6 +15,10 @@ public class waiting_timer : MonoBehaviour
 
     private float breathingTimer = 0f;
     private int breathingStage = 0; // 0: Breath in, 1: Hold, 2: Breath out
+    [SerializeField] AudioClip MovingClip;
+    [SerializeField] AudioClip MotivateClip;
+    bool motivate = false;
+    [SerializeField] AudioSource audio_source;
 
     void Start()
     {
@@ -24,20 +28,28 @@ public class waiting_timer : MonoBehaviour
 
     void Update()
     {
+
+
         if (timer > 0)
         {
+           
+
             timer -= Time.deltaTime;
 
             // Show breathing panel and perform breathing exercise when timer reaches certain value
             if (timer <= 57) //57
             {
+                if(timer<=26 && motivate == false) { motivate = true; audio_source.PlayOneShot(MotivateClip, 1F); }
                 breathingPanel.gameObject.SetActive(true);
                 PerformBreathingExercise();
             }
 
+
+
             // Timer reached zero, move to MRI room
             if (timer <= 0)
             {
+                audio_source.PlayOneShot(MovingClip, 1F);
                 breathingPanel.gameObject.SetActive(false);
                 Debug.Log("Move to MRI room");
                 // Optionally reset the timer here if needed
@@ -54,6 +66,8 @@ public class waiting_timer : MonoBehaviour
             label.gameObject.SetActive(false);
             instruct.gameObject.SetActive(true);
         }
+
+
     }
 
     // Perform 4-7-8 breathing exercise
