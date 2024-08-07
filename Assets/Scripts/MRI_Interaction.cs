@@ -28,8 +28,7 @@ public class MRI_Interaction : MonoBehaviour
         
     }
 
-    
-    
+   
     // Update is called once per frame
     void Update()
     {
