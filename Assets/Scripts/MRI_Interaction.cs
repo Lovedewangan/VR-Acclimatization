@@ -8,7 +8,12 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class MRI_Interaction : MonoBehaviour
 {
     public LocomotionSystem locomotionSystem;
+    public TeleportationProvider teleportationProvider;
+    public ContinuousMoveProviderBase continuousMoveProvider;
+    public SnapTurnProviderBase snapTurnProvider;
 
+
+    public AudioSource audioMRIEnterandExit;
     public AudioSource audioSource;
     public GameObject screen1;
     public GameObject screen2;
@@ -26,6 +31,29 @@ public class MRI_Interaction : MonoBehaviour
     void Start()
     {
         locomotionSystem = FindObjectOfType<LocomotionSystem>(); // Find the LocomotionSystem in the scene
+        teleportationProvider = FindObjectOfType<TeleportationProvider>();
+        continuousMoveProvider = FindObjectOfType<ContinuousMoveProviderBase>();
+        snapTurnProvider = FindObjectOfType<SnapTurnProviderBase>();
+
+
+        if (locomotionSystem == null)
+        {
+            Debug.LogError("LocomotionSystem not found in the scene.");
+        }
+
+        if (teleportationProvider == null)
+        {
+            Debug.LogError("TeleportationProvider not found in the scene.");
+        }
+
+        if (continuousMoveProvider == null)
+        {
+            Debug.LogError("ContinuousMoveProvider not found in the scene.");
+        }
+        if (snapTurnProvider == null)
+        {
+            Debug.LogError("SnapTurnProvider not found in the scene.");
+        }
     }
 
    
@@ -36,7 +64,13 @@ public class MRI_Interaction : MonoBehaviour
 
         if (activateUpdate)
         {
-            locomotionSystem.enabled = false;
+
+            if (locomotionSystem != null) locomotionSystem.enabled = false;
+            if (teleportationProvider != null) teleportationProvider.enabled = false;
+            if (continuousMoveProvider != null) continuousMoveProvider.enabled = false;
+            if (snapTurnProvider != null) snapTurnProvider.enabled = false;
+
+            
 
             Debug.Log("Activated");
 
@@ -83,6 +117,7 @@ public class MRI_Interaction : MonoBehaviour
         }
         if (mriExitUpdate)
         {
+            audioMRIEnterandExit.Play();
             Debug.Log("ExitStarted");
             // Calculate the direction to move towards the targetObject
             Vector3 direction = (targetObject.transform.position - transform.position).normalized;
@@ -101,7 +136,10 @@ public class MRI_Interaction : MonoBehaviour
             }*/
             if (transform.position == targetObject.transform.position)
             {
-                locomotionSystem.enabled = true;
+                if (locomotionSystem != null) locomotionSystem.enabled = true;
+                if (teleportationProvider != null) teleportationProvider.enabled = true;
+                if (continuousMoveProvider != null) continuousMoveProvider.enabled = true;
+                if (snapTurnProvider != null) snapTurnProvider.enabled = true;
 
                 mriExitUpdate = false;
                 Debug.Log("ExitedMRI");
@@ -143,6 +181,7 @@ public class MRI_Interaction : MonoBehaviour
     
     public void ActivateMRIMovement()
     {
+        audioMRIEnterandExit.Play();
         activateUpdate = true;
         mriUI.gameObject.SetActive(false);
     }
@@ -160,6 +199,7 @@ public class MRI_Interaction : MonoBehaviour
 
         mriExitUpdate = true;
         mriInsideUI.gameObject.SetActive(false);
+        audioMRIEnterandExit.Play();
         //mriExitUI.SetActive(true);
     }
 
