@@ -117,7 +117,7 @@ public class MRI_Interaction : MonoBehaviour
         }
         if (mriExitUpdate)
         {
-            audioMRIEnterandExit.Play();
+            
             Debug.Log("ExitStarted");
             // Calculate the direction to move towards the targetObject
             Vector3 direction = (targetObject.transform.position - transform.position).normalized;
@@ -171,6 +171,10 @@ public class MRI_Interaction : MonoBehaviour
             mriUI.gameObject.SetActive(true);
             other.gameObject.SetActive(false);
 
+            if (locomotionSystem != null) locomotionSystem.enabled = false;
+            if (teleportationProvider != null) teleportationProvider.enabled = false;
+            if (continuousMoveProvider != null) continuousMoveProvider.enabled = false;
+            if (snapTurnProvider != null) snapTurnProvider.enabled = false;
 
         }
         
@@ -181,6 +185,7 @@ public class MRI_Interaction : MonoBehaviour
     
     public void ActivateMRIMovement()
     {
+
         audioMRIEnterandExit.Play();
         activateUpdate = true;
         mriUI.gameObject.SetActive(false);
@@ -196,10 +201,10 @@ public class MRI_Interaction : MonoBehaviour
     IEnumerator ShowExitUIDelayed()
     {
         yield return new WaitForSeconds(120f); // Adjust the delay time as needed
-
+        audioMRIEnterandExit.Play();
         mriExitUpdate = true;
         mriInsideUI.gameObject.SetActive(false);
-        audioMRIEnterandExit.Play();
+        
         //mriExitUI.SetActive(true);
     }
 
