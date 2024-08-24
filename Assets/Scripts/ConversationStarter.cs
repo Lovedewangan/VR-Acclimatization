@@ -3,21 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using DialogueEditor;
 using UnityEngine.XR;
+using UnityEngine.Video;
 
 public class ConversationStarter : MonoBehaviour
 {
     [SerializeField] private NPCConversation myConversation;
     [SerializeField] private GameObject convoUIManager;
     [SerializeField] private AudioSource NPCSound;
+    
 
     private void OnTriggerEnter(Collider other)
     {
         // Check if the PrimaryIndexTrigger is pressed
         //if (IsPrimaryIndexTriggerPressed())
         //{
-        convoUIManager.SetActive(true);
+        convoUIManager.SetActive(true); 
+        
         NPCSound.Play();
         
+
         ConversationManager.Instance.StartConversation(myConversation);
         //}
     }
@@ -25,7 +29,9 @@ public class ConversationStarter : MonoBehaviour
     {
         NPCSound.Stop();
         //convoUIManager.SetActive(false);
+        
         Destroy(convoUIManager);
+        
         Destroy(gameObject);
     }
 

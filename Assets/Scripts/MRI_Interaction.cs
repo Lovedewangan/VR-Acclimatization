@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.InputSystem;
+using UnityEngine.Video;
 
 
 public class MRI_Interaction : MonoBehaviour
@@ -14,7 +15,10 @@ public class MRI_Interaction : MonoBehaviour
     public ContinuousMoveProviderBase continuousMoveProvider;
     public SnapTurnProviderBase snapTurnProvider;
 
+    [SerializeField] private GameObject illustrationUIManager;
 
+
+    public VideoPlayer videoPlayer;
     public AudioSource audioMRIEnterandExit;
     public AudioSource audioSource;
     public GameObject screen1;
@@ -170,6 +174,10 @@ public class MRI_Interaction : MonoBehaviour
                 Vector3 position = targetExit.transform.position;
                 transform.position = position;
                 transform.rotation = targetExit.transform.rotation;
+
+                illustrationUIManager.SetActive(true);
+                videoPlayer.Play();
+
             }
 
             // Calculate the distance to move this frame
@@ -194,10 +202,7 @@ public class MRI_Interaction : MonoBehaviour
             mriUI.gameObject.SetActive(true);
             other.gameObject.SetActive(false);
 
-            if (locomotionSystem != null) locomotionSystem.enabled = false;
-            if (teleportationProvider != null) teleportationProvider.enabled = false;
-            if (continuousMoveProvider != null) continuousMoveProvider.enabled = false;
-            if (snapTurnProvider != null) snapTurnProvider.enabled = false;
+            DisableMovementProviders();
 
         }
         
@@ -223,7 +228,7 @@ public class MRI_Interaction : MonoBehaviour
     */
     IEnumerator ShowExitUIDelayed()
     {
-        yield return new WaitForSeconds(15f); // Adjust the delay time as needed
+        yield return new WaitForSeconds(120f); // Adjust the delay time as needed
         
 
         StopMRIExperience();
