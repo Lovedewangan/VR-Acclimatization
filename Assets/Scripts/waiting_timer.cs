@@ -6,7 +6,7 @@ using UnityEngine;
 public class waiting_timer : MonoBehaviour
 {
     public GameObject breathingPanel;
-    public static float timer = 66f; //62
+    public static float timer = 28f; //62 //66f
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI instruct;
     public TextMeshProUGUI label;
@@ -37,9 +37,9 @@ public class waiting_timer : MonoBehaviour
             timer -= Time.deltaTime;
 
             // Show breathing panel and perform breathing exercise when timer reaches certain value
-            if (timer <= 57) //57
+            if (timer <= 19) //57 
             {
-                if(timer<=26 && motivate == false) { motivate = true; audio_source.PlayOneShot(MotivateClip, 1F); }
+                //if(timer<=9 && motivate == false) { motivate = true; audio_source.PlayOneShot(MotivateClip, 1F); } //26
                 breathingPanel.gameObject.SetActive(true);
                 PerformBreathingExercise();
             }
