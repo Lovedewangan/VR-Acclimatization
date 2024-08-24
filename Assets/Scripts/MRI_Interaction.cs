@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.InputSystem;
+
 
 public class MRI_Interaction : MonoBehaviour
 {
@@ -28,6 +30,26 @@ public class MRI_Interaction : MonoBehaviour
     public bool mriExitUpdate = false;
     public float moveSpeed = 0.1f;
     // Start is called before the first frame update
+    private InputAction stopMRIAction;
+    private Coroutine exitCoroutine;
+    void Awake()
+    {
+        // Define the InputAction
+        stopMRIAction = new InputAction(type: InputActionType.Button, binding: "<XRController>{RightHand}/primaryButton");
+
+        // Assign the method to call when the action is performed
+        stopMRIAction.performed += ctx => StopMRIExperience();
+
+        // Enable the InputAction
+        
+    }
+
+    void OnDestroy()
+    {
+        // Cleanup
+        stopMRIAction.Disable();
+        stopMRIAction.performed -= ctx => StopMRIExperience();
+    }
     void Start()
     {
         locomotionSystem = FindObjectOfType<LocomotionSystem>(); // Find the LocomotionSystem in the scene
@@ -65,12 +87,9 @@ public class MRI_Interaction : MonoBehaviour
         if (activateUpdate)
         {
 
-            if (locomotionSystem != null) locomotionSystem.enabled = false;
-            if (teleportationProvider != null) teleportationProvider.enabled = false;
-            if (continuousMoveProvider != null) continuousMoveProvider.enabled = false;
-            if (snapTurnProvider != null) snapTurnProvider.enabled = false;
+            DisableMovementProviders();
 
-            
+
 
             Debug.Log("Activated");
 
@@ -93,6 +112,9 @@ public class MRI_Interaction : MonoBehaviour
             }*/
             if (transform.position == targetReached.transform.position)
             {
+
+                
+                
                 mriInsideUI.gameObject.SetActive(true);
                 activateUpdate = false; // Deactivate the Update function
                 Debug.Log("DeActivated");
@@ -103,7 +125,11 @@ public class MRI_Interaction : MonoBehaviour
                 screen1.gameObject.SetActive(false);
                 screen2.gameObject.SetActive(false);
                 screen3.gameObject.SetActive(false);
-                StartCoroutine(ShowExitUIDelayed());
+
+
+                stopMRIAction.Enable();
+
+                exitCoroutine = StartCoroutine(ShowExitUIDelayed());
             }
 
             // Calculate the distance to move this frame
@@ -136,10 +162,7 @@ public class MRI_Interaction : MonoBehaviour
             }*/
             if (transform.position == targetObject.transform.position)
             {
-                if (locomotionSystem != null) locomotionSystem.enabled = true;
-                if (teleportationProvider != null) teleportationProvider.enabled = true;
-                if (continuousMoveProvider != null) continuousMoveProvider.enabled = true;
-                if (snapTurnProvider != null) snapTurnProvider.enabled = true;
+                EnableMovementProviders();
 
                 mriExitUpdate = false;
                 Debug.Log("ExitedMRI");
@@ -200,15 +223,46 @@ public class MRI_Interaction : MonoBehaviour
     */
     IEnumerator ShowExitUIDelayed()
     {
-        yield return new WaitForSeconds(120f); // Adjust the delay time as needed
-        audioMRIEnterandExit.Play();
-        mriExitUpdate = true;
-        mriInsideUI.gameObject.SetActive(false);
+        yield return new WaitForSeconds(15f); // Adjust the delay time as needed
         
+
+        StopMRIExperience();
+
         //mriExitUI.SetActive(true);
     }
 
+    void StopMRIExperience()
+    {
+        mriExitUpdate = true;
+        audioSource.Pause(); // Pause the audio
+        audioMRIEnterandExit.Play();
+        mriInsideUI.gameObject.SetActive(false);
+
+        if (exitCoroutine != null)
+        {
+            StopCoroutine(exitCoroutine);
+            exitCoroutine = null;
+        }
+
+
+        Debug.Log("MRI Experience Stopped");
+        stopMRIAction.Disable();
+    }
     // To Enable and Disable the Joysticks
-     
+    void DisableMovementProviders()
+    {
+        if (locomotionSystem != null) locomotionSystem.enabled = false;
+        if (teleportationProvider != null) teleportationProvider.enabled = false;
+        if (continuousMoveProvider != null) continuousMoveProvider.enabled = false;
+        if (snapTurnProvider != null) snapTurnProvider.enabled = false;
+    }
+
+    void EnableMovementProviders()
+    {
+        if (locomotionSystem != null) locomotionSystem.enabled = true;
+        if (teleportationProvider != null) teleportationProvider.enabled = true;
+        if (continuousMoveProvider != null) continuousMoveProvider.enabled = true;
+        if (snapTurnProvider != null) snapTurnProvider.enabled = true;
+    }
 
 }
