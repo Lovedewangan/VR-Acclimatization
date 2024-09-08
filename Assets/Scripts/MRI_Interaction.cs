@@ -91,7 +91,7 @@ public class MRI_Interaction : MonoBehaviour
         if (activateUpdate)
         {
 
-            DisableMovementProviders();
+            //DisableMovementProviders();
 
 
 
@@ -202,7 +202,7 @@ public class MRI_Interaction : MonoBehaviour
             mriUI.gameObject.SetActive(true);
             other.gameObject.SetActive(false);
 
-            DisableMovementProviders();
+            //DisableMovementProviders();
 
         }
         
