@@ -6,3 +6,6 @@ Features
 - Relaxation Techniques
 - Simulated MRI Environment
 - Personalization
+
+https://github.com/user-attachments/assets/6c7166cd-e18a-44c3-94f6-c3174741027e
+
